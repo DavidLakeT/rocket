@@ -5,11 +5,6 @@ import com.github.doyaaaaaken.kotlincsv.dsl.csvReader
 import com.github.doyaaaaaken.kotlincsv.dsl.context.InsufficientFieldsRowBehaviour
 
 class App {
-    val greeting: String
-        get() {
-            return "Hello World!"
-        }
-
     fun loadDataset() {
         val dataset = "lite.csv"
         val file = File(javaClass.classLoader.getResource(dataset).toURI())
