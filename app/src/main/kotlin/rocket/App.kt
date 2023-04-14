@@ -3,23 +3,25 @@ package rocket
 import java.io.File
 import com.github.doyaaaaaken.kotlincsv.dsl.csvReader
 import com.github.doyaaaaaken.kotlincsv.dsl.context.InsufficientFieldsRowBehaviour
+import com.github.doyaaaaaken.kotlincsv.client.CsvReader
 
 class App {
-    fun loadDataset() {
+    fun loadDataset(): List<Student> {
         val dataset = "lite.csv"
         val file = File(javaClass.classLoader.getResource(dataset).toURI())
-
-        if (!file.exists()) {
-            println("El archivo $dataset no existe.")
-            return
-        }
 
         val csvReader = csvReader {
             delimiter = ';'
             insufficientFieldsRowBehaviour = InsufficientFieldsRowBehaviour.EMPTY_STRING
         }
 
-        val rows: List<Map<String, String>> = csvReader.readAllWithHeader(file)
+        val res = csvReader.readAllWithHeader(file).map {
+            Student(
+                document = it["estu_tipodocumento.1"]!!.trim()
+            )
+        }.toList()
+
+        return res
     }
 }
 
