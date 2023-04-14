@@ -3,7 +3,7 @@ plugins {
     application
 }
 
-group = "team.homelake"
+group = "com.github.DavidLakeT"
 version = "1.0-SNAPSHOT"
 
 repositories {
@@ -12,6 +12,7 @@ repositories {
 
 dependencies {
     testImplementation(kotlin("test"))
+    implementation("com.github.doyaaaaaken:kotlin-csv-jvm:1.9.0")
 }
 
 tasks.test {
@@ -23,5 +24,5 @@ kotlin {
 }
 
 application {
-    mainClass.set("MainKt")
+    mainClass.set("kotlin.MainKt")
 }
