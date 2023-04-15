@@ -10,6 +10,9 @@ plugins {
     // Apply the org.jetbrains.kotlin.jvm Plugin to add support for Kotlin.
     id("org.jetbrains.kotlin.jvm") version "1.5.0"
 
+    // Kotlin Dataframe plugin
+    id("org.jetbrains.kotlinx.dataframe") version "0.10.0"
+
     // Apply the application plugin to add support for building a CLI application in Java.
     application
 }
@@ -37,6 +40,9 @@ dependencies {
 
     // Kotlin-csv
     implementation("com.github.doyaaaaaken:kotlin-csv-jvm:1.9.0")
+
+    // Kotlin Dataframe
+    implementation("org.jetbrains.kotlinx:dataframe:0.10.0")
 }
 
 application {
