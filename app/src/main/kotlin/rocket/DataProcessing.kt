@@ -13,6 +13,18 @@ class DataProcessing {
             delimiter = ';',
         )
 
+        /*
+        
+        TO-DO #1:
+        - define columnList with names of columns to be processed (listOf)
+        - df = df[columnList]
+
+        TO-DO #2:
+        - Gini calculation
+        - map results (could be another DataFrame)
+
+         */
+
         println(df["estu_genero.1", "exito"])
     }
 }
