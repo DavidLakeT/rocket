@@ -6,13 +6,13 @@ import org.jetbrains.kotlinx.dataframe.io.read
 import java.io.File
 
 class DataProcessing {
-
     fun readDataframe() {
 
-        val ids by column<String>()
-
         val df = DataFrame.read(
-            File(javaClass.classLoader.getResource("lite.csv").toURI())
+            "src/main/resources/grandecito.csv",
+            delimiter = ';',
         )
+
+        println(df["estu_genero.1", "exito"])
     }
 }
