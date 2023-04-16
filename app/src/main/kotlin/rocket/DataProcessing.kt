@@ -9,7 +9,7 @@ import org.jetbrains.kotlinx.dataframe.columns.toColumnSet
 class DataProcessing {
     fun readDataframe() {
 
-        var df = DataFrame.read(
+        val df = DataFrame.read(
             "src/main/resources/lite.csv",
             delimiter = ';',
         )
@@ -26,32 +26,10 @@ class DataProcessing {
 
          */
 
-        // "fami_numlibros", "estu_depto_reside.1", "estu_genero.1",
+        val columnList = listOf("estu_consecutivo.1", "estu_cod_reside_mcpio.1", "cole_codigo_icfes", "cole_cod_dane_establecimiento", "cole_cod_dane_sede", "cole_cod_mcpio_ubicacion", "cole_cod_depto_ubicacion").toColumnSet()
 
-        /*
-        // eliminar las columnas que no son numéricas o que tienen valores faltantes
-        val numericCols = df.numericColumns().names().filterNot { col -> df.column(col).isMissing.any() }
+        df = df.select { columnList }
 
-        // calcular el coeficiente de correlación entre cada columna numérica y la columna "exito"
-        val correlations = mutableMapOf<String, Double>()
-        for (col in numericCols) {
-            val x = df.column(col).toDoubleArray()
-            val y = df.column("exito").toDoubleArray()
-            val model = OLS.fit(x, y)
-            correlations[col] = model.correlation
-        }
-
-        // mostrar las correlaciones ordenadas de mayor a menor
-        correlations.toList().sortedByDescending { (_, value) -> abs(value) }.forEach { (col, corr) ->
-            println("$col: $corr")
-        }
-
-        */
-
-        val columns = listOf("punt_filosofia", "punt_biologia", "exito").toColumnSet()
-
-        val test = df.select { columns }
-
-        print(test)
+        print(df)
     }
 }
