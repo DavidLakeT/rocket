@@ -9,7 +9,7 @@ import org.jetbrains.kotlinx.dataframe.columns.toColumnSet
 class DataProcessing {
     fun readDataframe() {
 
-        val df = DataFrame.read(
+        var df = DataFrame.read(
             "src/main/resources/lite.csv",
             delimiter = ';',
         )
@@ -31,5 +31,9 @@ class DataProcessing {
         df = df.select { columnList }
 
         print(df)
+
+        //correlation matrix
+        print(df.corr())
+
     }
 }
