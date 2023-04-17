@@ -1,18 +1,5 @@
 {
     "columnList": [
-        "estu_consecutivo.1",
-        "estu_exterior",
-        "periodo",
-        "estu_tieneetnia",
-        "estu_tomo_cursopreparacion",
-        "estu_cursodocentesies",
-        "estu_cursoiesapoyoexterno",
-        "estu_cursoiesexterna",
-        "estu_simulacrotipoicfes",
-        "estu_actividadrefuerzoareas",
-        "estu_actividadrefuerzogeneric",
-        "fami_trabajolaborpadre",
-        "fami_trabajolabormadre",
         "fami_numlibros",
         "estu_inst_cod_departamento",
         "estu_tipodocumento.1",

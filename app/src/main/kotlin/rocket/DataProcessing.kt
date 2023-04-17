@@ -12,24 +12,25 @@ import Config
 class DataProcessing {
     fun readDataframe() {
 
+        val config = Json.decodeFromString<Config>(File("src/main/resources/config.json").readText())
+
         val df = DataFrame.read(
             "src/main/resources/lite.csv",
             delimiter = ';',
         ).select { config.columnList.toColumnSet() }
 
         /*
-        
-        TO-DO #1:
-        - define columnList with names of columns to be processed (listOf)
-        - df = df[columnList]
 
-        TO-DO #2:
-        - Gini calculation
-        - map results (could be another DataFrame)
+        TO-DO #1 (Assignee: jdvalencit):
+        - Implement function for calculating Gini coefficient on Categoric columns.
+        - Export results to Jupyter or CSV.
+
+        TO-DO #2 (Assignee: DavidLakeT):
+        - Implement function for calculating Pearson coefficient on Categoric columns (corr()).
+        - Export results to Jupyter or CSV.
+        - Check how this compares to Gini and if there's a direct conversion.
 
         */
-
-        print(df)
 
         //correlation matrix
         print(df.corr())
