@@ -42,7 +42,8 @@ class DataProcessing {
         // Create a Bagging ensemble of J48 decision tree classifiers
         val classifier = Bagging()
         classifier.classifier = J48()
-        classifier.numIterations = 1  // number of trees in the ensemble
+        classifier.numIterations = 1
+        classifier.seed = 1
     
         // Train the classifier on the dataset
         classifier.buildClassifier(nominalDataset)
@@ -77,7 +78,7 @@ class DataProcessing {
         val config = Json.decodeFromString<Config>(File("src/main/resources/config.json").readText())
     
         val loader = CSVLoader()
-        loader.setSource(File("src/main/resources/train_datasets/1_train_45000.csv"))
+        loader.setSource(File("src/main/resources/train_datasets/0_train_15000.csv"))
         loader.fieldSeparator = ";"
         val dataset = loader.dataSet
     
@@ -92,15 +93,15 @@ class DataProcessing {
      
         // Create a random forest classifier
         val classifier = RandomForest()
-        classifier.numIterations = 5
-        classifier.seed = 1234
+        classifier.numIterations = 1
+        classifier.seed = 1
     
         // Train the classifier on the dataset
         classifier.buildClassifier(nominalDataset)
     
         // Load test data
         val testLoader = CSVLoader()
-        testLoader.setSource(File("src/main/resources/test_datasets/1_test_15000.csv"))
+        testLoader.setSource(File("src/main/resources/test_datasets/0_test_5000.csv"))
         testLoader.fieldSeparator = ";"
         val testDataset = testLoader.dataSet
     
