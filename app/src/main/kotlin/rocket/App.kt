@@ -5,11 +5,9 @@ import com.github.doyaaaaaken.kotlincsv.dsl.csvReader
 import com.github.doyaaaaaken.kotlincsv.dsl.context.InsufficientFieldsRowBehaviour
 import com.github.doyaaaaaken.kotlincsv.client.CsvReader
 
-class App {
-}
-
-
 fun main() {
     val daf = DataProcessing()
-    daf.processRandomForest()
+    
+    daf.processC50()
+    //daf.processRandomForest()
 }
