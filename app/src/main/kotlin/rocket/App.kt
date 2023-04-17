@@ -2,16 +2,14 @@ package rocket
 
 import java.io.File
 import com.github.doyaaaaaken.kotlincsv.dsl.csvReader
-import java.io.InputStreamReader
+import com.github.doyaaaaaken.kotlincsv.dsl.context.InsufficientFieldsRowBehaviour
+import com.github.doyaaaaaken.kotlincsv.client.CsvReader
 
 class App {
-    val greeting: String
-    
-    get() {
-        return "Hello World!"
-    }
 }
 
+
 fun main() {
-    println(App().greeting)
+    val daf = DataProcessing()
+    daf.readDataframe()
 }

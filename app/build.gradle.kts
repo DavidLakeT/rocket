@@ -8,7 +8,13 @@
 
 plugins {
     // Apply the org.jetbrains.kotlin.jvm Plugin to add support for Kotlin.
-    id("org.jetbrains.kotlin.jvm") version "1.5.0"
+    id("org.jetbrains.kotlin.jvm") version "1.8.20"
+
+    // Kotlin Dataframe plugin
+    id("org.jetbrains.kotlinx.dataframe") version "0.10.0"
+
+    // Kotlinx Serialization
+    kotlin("plugin.serialization") version "1.8.10"
 
     // Apply the application plugin to add support for building a CLI application in Java.
     application
@@ -37,6 +43,12 @@ dependencies {
 
     // Kotlin-csv
     implementation("com.github.doyaaaaaken:kotlin-csv-jvm:1.9.0")
+
+    // Kotlin Dataframe
+    implementation("org.jetbrains.kotlinx:dataframe:0.10.0")
+
+    // Kotlinx Serialization Json
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0")
 }
 
 application {
