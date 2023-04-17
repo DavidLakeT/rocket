@@ -49,7 +49,11 @@ dependencies {
 
     // Kotlinx Serialization Json
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0")
+
+    // Weka
+    implementation("nz.ac.waikato.cms.weka:weka-dev:3.9.5")
 }
+
 
 application {
     // Define the main class for the application.

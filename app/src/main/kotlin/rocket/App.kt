@@ -11,5 +11,5 @@ class App {
 
 fun main() {
     val daf = DataProcessing()
-    daf.readDataframe()
+    daf.processRandomForest()
 }
