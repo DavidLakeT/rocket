@@ -40,8 +40,9 @@ class DataProcessing {
             val config = Json.decodeFromString<Config>(File("src/main/resources/config.json").readText())
     
             val trainLoader = CSVLoader()
-            trainLoader.setSource(File("src/main/resources/train_datasets/0_train_15000.csv"))
-            trainLoader.fieldSeparator = ";"
+            //trainLoader.setSource(File("src/main/resources/train_datasets/0_train_15000.csv"))
+            trainLoader.setSource(File(config.trainning_dataset))
+            trainLoader.fieldSeparator = config.separator
             val trainDataset = trainLoader.dataSet
             trainDataset.setClassIndex(trainDataset.numAttributes() - 1)
     
@@ -52,13 +53,13 @@ class DataProcessing {
     
             val classifier = Bagging()
             classifier.classifier = J48()
-            classifier.numIterations = 1
-            classifier.seed = 1
+            classifier.numIterations = config.num_iterations_C45
+            classifier.seed = config.seed_C45
             classifier.buildClassifier(nominalTrainDataset)
     
             val testLoader = CSVLoader()
-            testLoader.setSource(File("src/main/resources/test_datasets/0_test_5000.csv"))
-            testLoader.fieldSeparator = ";"
+            testLoader.setSource(File(config.testing_dataset))
+            testLoader.fieldSeparator = config.separator
             val testDataset = testLoader.dataSet
             testDataset.setClassIndex(testDataset.numAttributes() - 1)
 
@@ -81,8 +82,8 @@ class DataProcessing {
             val config = Json.decodeFromString<Config>(File("src/main/resources/config.json").readText())
     
             val trainLoader = CSVLoader()
-            trainLoader.setSource(File("src/main/resources/train_datasets/0_train_15000.csv"))
-            trainLoader.fieldSeparator = ";"
+            trainLoader.setSource(File(config.trainning_dataset))
+            trainLoader.fieldSeparator = config.separator
             val dataset = trainLoader.dataSet
             dataset.setClassIndex(dataset.numAttributes() - 1)
     
@@ -92,13 +93,13 @@ class DataProcessing {
             val nominalDataset = Filter.useFilter(dataset, filter)
     
             val classifier = RandomForest()
-            classifier.numIterations = 1
-            classifier.seed = 1
+            classifier.numIterations = config.num_iterations_RF
+            classifier.seed = config.seed_RF
             classifier.buildClassifier(nominalDataset)
     
             val testLoader = CSVLoader()
-            testLoader.setSource(File("src/main/resources/test_datasets/0_test_5000.csv"))
-            testLoader.fieldSeparator = ";"
+            testLoader.setSource(File(config.testing_dataset))
+            testLoader.fieldSeparator = config.separator
             val testDataset = testLoader.dataSet
             testDataset.setClassIndex(testDataset.numAttributes() - 1)
 

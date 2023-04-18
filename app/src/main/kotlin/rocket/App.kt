@@ -1,13 +1,13 @@
 package rocket
 
 import java.io.File
+import java.util.Scanner
 import com.github.doyaaaaaken.kotlincsv.dsl.csvReader
 import com.github.doyaaaaaken.kotlincsv.dsl.context.InsufficientFieldsRowBehaviour
 import com.github.doyaaaaaken.kotlincsv.client.CsvReader
 
 fun main() {
-    val daf = DataProcessing()
+    val processer = DataProcessing()
     
-    daf.processC45()
-    //daf.processRandomForest()
+    processer.processC45()
 }
