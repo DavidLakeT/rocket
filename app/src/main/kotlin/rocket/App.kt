@@ -5,7 +5,6 @@ import java.util.Scanner
 import com.github.doyaaaaaken.kotlincsv.dsl.csvReader
 import com.github.doyaaaaaken.kotlincsv.dsl.context.InsufficientFieldsRowBehaviour
 import com.github.doyaaaaaken.kotlincsv.client.CsvReader
-import kotlin.io.println
 
 fun main() {
     val processer = DataProcessing()
