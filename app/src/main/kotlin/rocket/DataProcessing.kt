@@ -31,6 +31,7 @@ class DataProcessing {
     2) Set "classifier.numIterations" from config
     3) Set "classifier.seed" from config
     4) Update config struct to add training & testing datasets path
+    5) Update config struct to add separator character (';')
     
     */
 
@@ -74,43 +75,43 @@ class DataProcessing {
     }
 
     fun processRandomForest() {
+        try {
+            val config = Json.decodeFromString<Config>(File("src/main/resources/config.json").readText())
+    
+            val trainLoader = CSVLoader()
+            trainLoader.setSource(File("src/main/resources/train_datasets/0_train_15000.csv"))
+            trainLoader.fieldSeparator = ";"
+            val dataset = trainLoader.dataSet
+            dataset.setClassIndex(dataset.numAttributes() - 1)
+    
+            val filter = NumericToNominal()
+            filter.setAttributeIndices((dataset.classIndex() + 1).toString())
+            filter.setInputFormat(dataset)
+            val nominalDataset = Filter.useFilter(dataset, filter)
+    
+            val classifier = RandomForest()
+            classifier.numIterations = 1
+            classifier.seed = 1
+            classifier.buildClassifier(nominalDataset)
+    
+            val testLoader = CSVLoader()
+            testLoader.setSource(File("src/main/resources/test_datasets/0_test_5000.csv"))
+            testLoader.fieldSeparator = ";"
+            val testDataset = testLoader.dataSet
+            testDataset.setClassIndex(testDataset.numAttributes() - 1)
 
-        val config = Json.decodeFromString<Config>(File("src/main/resources/config.json").readText())
+            val testFilter = NumericToNominal()
+            testFilter.setAttributeIndices((testDataset.classIndex() + 1).toString())
+            testFilter.setInputFormat(testDataset)
+            val nominalTestDataset = Filter.useFilter(testDataset, testFilter)
     
-        val loader = CSVLoader()
-        loader.setSource(File("src/main/resources/train_datasets/0_train_15000.csv"))
-        loader.fieldSeparator = ";"
-        val dataset = loader.dataSet
-    
-        dataset.setClassIndex(dataset.numAttributes() - 1)
-    
-        val filter = NumericToNominal()
-        filter.setAttributeIndices((dataset.classIndex() + 1).toString())
-        filter.setInputFormat(dataset)
-        val nominalDataset = Filter.useFilter(dataset, filter)
-     
-        val classifier = RandomForest()
-        classifier.numIterations = 1
-        classifier.seed = 1
-    
-        classifier.buildClassifier(nominalDataset)
-    
-        val testLoader = CSVLoader()
-        testLoader.setSource(File("src/main/resources/test_datasets/0_test_5000.csv"))
-        testLoader.fieldSeparator = ";"
-        val testDataset = testLoader.dataSet
-    
-        testDataset.setClassIndex(testDataset.numAttributes() - 1)
-    
-        val testFilter = NumericToNominal()
-        testFilter.setAttributeIndices((testDataset.classIndex() + 1).toString())
-        testFilter.setInputFormat(testDataset)
-        val nominalTestDataset = Filter.useFilter(testDataset, testFilter)
-    
-        val evaluation = Evaluation(nominalTestDataset)
-        evaluation.evaluateModel(classifier, nominalTestDataset)
-    
-        println(evaluation.toSummaryString())
+            val evaluation = Evaluation(nominalTestDataset)
+            evaluation.evaluateModel(classifier, nominalTestDataset)
+
+            println(evaluation.toSummaryString())
+        } catch (e: Exception) {
+
+            println("Error: ${e.message}")
+        }
     }
-    
 }
