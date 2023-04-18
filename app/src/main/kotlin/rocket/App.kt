@@ -8,6 +8,6 @@ import com.github.doyaaaaaken.kotlincsv.client.CsvReader
 fun main() {
     val daf = DataProcessing()
     
-    //daf.processC50()
-    daf.processRandomForest()
+    daf.processC45()
+    //daf.processRandomForest()
 }
