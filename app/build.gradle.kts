@@ -54,8 +54,11 @@ dependencies {
     implementation("nz.ac.waikato.cms.weka:weka-dev:3.9.5")
 }
 
-
 application {
     // Define the main class for the application.
     mainClass.set("rocket.AppKt")
+}
+
+tasks.withType<JavaExec>() {
+    standardInput = System.`in`
 }
